@@ -22,11 +22,7 @@ const httpServer = http.createServer(app);
 
 // Initialize Socket.IO
 const io = new Server(httpServer, {
-  cors: {
-    origin: config.cors.origin || 'http://localhost:5173',
-    methods: ['GET', 'POST'],
-    credentials: true
-  }
+  cors: config.cors
 });
 
 // Store io in shared module so services can emit events without circular deps

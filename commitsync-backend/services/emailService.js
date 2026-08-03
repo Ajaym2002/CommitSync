@@ -62,7 +62,7 @@ module.exports = {
           <h2 style="color: #D35400;">⚠️ High Risk Alert</h2>
           <p>Your commitment <strong>"${commitmentTitle}"</strong> is currently at <strong style="color:#D35400;">high risk</strong> of missing its deadline.</p>
           <p>Log in to CommitSync to review your progress, connect with your accountability partners, and get back on track.</p>
-          <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/syncs" style="display:inline-block;margin-top:12px;padding:10px 24px;background:#D35400;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">View Commitment</a>
+          <a href="${process.env.FRONTEND_URL || 'https://commit-sync-one.vercel.app'}/syncs" style="display:inline-block;margin-top:12px;padding:10px 24px;background:#D35400;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">View Commitment</a>
           <p style="margin-top:20px;font-size:0.8rem;color:#94A3B8;">You received this because you have notifications enabled on CommitSync.</p>
         </div>
       `
@@ -78,7 +78,7 @@ module.exports = {
           <h2 style="color: #D35400;">🤝 Accountability Partner Alert</h2>
           <p><strong>${ownerName || 'Your accountability partner'}</strong>'s commitment <strong>"${commitmentTitle}"</strong> is currently at <strong style="color:#D35400;">high risk</strong> of missing its deadline.</p>
           <p>As their accountability partner, now is a great time to reach out and offer support. A quick check-in can make a real difference.</p>
-          <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/circles" style="display:inline-block;margin-top:12px;padding:10px 24px;background:#D35400;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">Go to Circles</a>
+          <a href="${process.env.FRONTEND_URL || 'https://commit-sync-one.vercel.app'}/circles" style="display:inline-block;margin-top:12px;padding:10px 24px;background:#D35400;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">Go to Circles</a>
           <p style="margin-top:20px;font-size:0.8rem;color:#94A3B8;">You received this because you are an accountability partner on CommitSync.</p>
         </div>
       `

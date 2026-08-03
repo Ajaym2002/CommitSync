@@ -21,13 +21,27 @@ module.exports = {
   
   cors: {
     origin: function(origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, Postman)
+      // Allow requests with no origin (mobile apps, curl, Postman, Render health checks)
       if (!origin) return callback(null, true);
-      // Allow any localhost port in development
-      if (origin.match(/^http:\/\/localhost:\d+$/) || origin === (process.env.CORS_ORIGIN || 'http://localhost:5173')) {
+
+      const allowedOrigins = [
+        // Production frontend
+        process.env.CORS_ORIGIN,
+        // Common local dev ports
+        'http://localhost:5173',
+        'http://localhost:3000',
+        'http://localhost:4173',
+      ].filter(Boolean); // remove undefined/null entries
+
+      // Also allow any http://localhost:<port> pattern for flexibility in dev
+      if (
+        origin.match(/^http:\/\/localhost:\d+$/) ||
+        allowedOrigins.includes(origin)
+      ) {
         return callback(null, true);
       }
-      callback(new Error('Not allowed by CORS'));
+
+      callback(new Error(`CORS: Origin '${origin}' not allowed`));
     },
     credentials: true
   },

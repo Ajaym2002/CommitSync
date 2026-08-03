@@ -341,7 +341,7 @@ exports.googleAuth = (req, res) => {
  * @access  Public
  */
 exports.googleCallback = async (req, res) => {
-  let origin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+  let origin = process.env.CORS_ORIGIN || 'https://commit-sync-one.vercel.app';
 
   try {
     const { code, state } = req.query;

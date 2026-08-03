@@ -328,7 +328,8 @@ export default function Login({ initialMode = 'login' }) {
 
                 <button
                   onClick={() => {
-                    window.location.href = 'http://localhost:8000/api/auth/google';
+                    const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+                    window.location.href = `${apiBase}/auth/google`;
                   }}
                   className={styles.googleBtn}
                 >
