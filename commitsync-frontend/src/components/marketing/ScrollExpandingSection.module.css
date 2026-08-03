@@ -1,0 +1,230 @@
+.container {
+  width: 100%;
+  background-color: #e8e0d5; /* Warm brown background */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── 1. Text Section ──────────────────────────────────────────
+   Reduced bottom padding to bring the capsule closer to the text */
+.textContainer {
+  text-align: center;
+  padding: 15vh 8% 2vh;
+}
+
+.whoAreWeBadge {
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  background-color: #d35400; /* Dark orange */
+  color: #ffffff;
+  padding: 0.4rem 1.4rem;
+  border-radius: 9999px 9999px 0 9999px; /* Top-left, top-right, bottom-right(sharp), bottom-left */
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  cursor: default;
+  user-select: none;
+}
+
+.topHeading {
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1a1005;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.topDescription {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(20, 12, 2, 0.65);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 700px; /* Constrain width so text wraps naturally at all sizes */
+}
+
+/* ─── 2. Image Track ───────────────────────────────────────────
+   160vh tall: 100vh for the sticky frame + 60vh of scroll distance.
+   This provides a very snappy hold phase, scrolling away almost immediately. */
+.imageTrack {
+  position: relative;
+  height: 160vh;
+  width: 100%;
+}
+
+/* ─── Sticky Wrapper ───────────────────────────────────────────
+   Sticks instantly when it reaches top:0 of the viewport. */
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items removed because we use inline margin-top to position */
+  overflow: hidden;
+}
+
+/* ─── Image Shell ──────────────────────────────────────────────
+   Width, height, border-radius, and margin-top animate via inline styles. */
+.imageShell {
+  position: relative;
+  overflow: hidden;
+  will-change: width, height, border-radius, margin-top;
+}
+
+/* ─── Photo ──────────────────────────────────────────────────── */
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ─── Dark Overlay ───────────────────────────────────────────── */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* ─── Text Inside Image ──────────────────────────────────────── */
+.imageText {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 10%;
+}
+
+.imageHeading {
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.imageDescription {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.readMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  background-color: #d35400; /* Dark orange */
+  color: #ffffff;
+  padding: 0.6rem 1.6rem;
+  border: none;
+  border-radius: 0 9999px 9999px 9999px; /* Top-left sharp, others rounded */
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.readMoreBtn:hover {
+  background-color: #e65100;
+}
+
+/* ─── Responsive: Tablet (≤ 1024px) ─────────────────────────── */
+@media (max-width: 1024px) {
+  .textContainer {
+    padding: 12vh 8% 2vh;
+  }
+
+  .topHeading {
+    font-size: 2.2rem;
+  }
+
+  .imageHeading {
+    font-size: 2rem;
+  }
+
+  .topDescription {
+    font-size: 1rem;
+  }
+}
+
+/* ─── Responsive: Mobile (≤ 768px) ──────────────────────────── */
+@media (max-width: 768px) {
+  .textContainer {
+    padding: 10vh 6% 2vh;
+  }
+
+  .topHeading {
+    font-size: 1.9rem;
+  }
+
+  .topDescription {
+    font-size: 0.95rem;
+  }
+
+  .imageHeading {
+    font-size: 1.65rem;
+  }
+
+  .imageDescription {
+    font-size: 0.95rem;
+  }
+
+  .readMoreBtn {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.3rem;
+  }
+
+  /* Slightly reduce track height so mobile doesn't feel sluggish */
+  .imageTrack {
+    height: 140vh;
+  }
+}
+
+/* ─── Responsive: Small Mobile (≤ 480px) ────────────────────── */
+@media (max-width: 480px) {
+  .textContainer {
+    padding: 8vh 5% 1.5vh;
+  }
+
+  .topHeading {
+    font-size: 1.65rem;
+  }
+
+  .topDescription {
+    font-size: 0.9rem;
+  }
+
+  .imageHeading {
+    font-size: 1.4rem;
+  }
+
+  .imageDescription {
+    font-size: 0.88rem;
+    max-width: 90%;
+  }
+
+  .imageText {
+    padding: 0 6%;
+  }
+
+  .imageTrack {
+    height: 130vh;
+  }
+}

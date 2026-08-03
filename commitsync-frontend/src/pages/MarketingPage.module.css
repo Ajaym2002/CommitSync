@@ -1,0 +1,437 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap");
+
+/* ─── Container ─────────────────────────────────────────── */
+.marketingContainer {
+  width: 100%;
+  font-family: "Outfit", sans-serif;
+  color: #f8fafc;
+  /* Auth section background - so the 100vh gap below stickyOverlapZone looks right */
+  background-color: #f8fafc;
+}
+
+/* The shared scroll container that makes sticky + overlap work.
+   Background must match what the blue section's rounded corners sit against. */
+.stickyOverlapZone {
+  position: relative;
+  background-color: transparent;
+  /* No background so DifferenceSection handles it */
+  z-index: 2;
+  /* Ensure it renders above the fixed auth section */
+  margin-bottom: 100vh;
+  /* This empty space allows you to scroll past the blue section, revealing the fixed auth section below */
+}
+
+/* ─── Hero Section ───────────────────────────────────────── */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #0f172a;
+  /* Fallback for the removed container background */
+  background-image: url("../../images/annie-spratt-r8nUg6eXUxY-unsplash.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+      rgba(15, 23, 42, 0.92) 0%,
+      rgba(15, 23, 42, 0.48) 55%,
+      rgba(15, 23, 42, 0.1) 100%);
+  z-index: 1;
+}
+
+/* ─── Navbar (scoped inside hero) ────────────────────────── */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6%;
+  z-index: 10;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom,
+      rgba(15, 23, 42, 0.9) 0%,
+      rgba(15, 23, 42, 0.55) 70%,
+      transparent 100%);
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.navLogo:hover {
+  opacity: 0.85;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Non-clickable nav items */
+.navItem {
+  font-family: "Libre Baskerville", serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  cursor: default;
+  user-select: none;
+}
+
+.registerBtn {
+  font-family: "Outfit", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 0.4rem 1.6rem;
+  border-radius: 9999px 0 9999px 9999px;
+  /* Top right sharp */
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.4s ease,
+    border-radius 0.4s ease,
+    color 0.4s ease;
+}
+
+.registerBtn:hover {
+  background-color: #e67e22;
+  /* Lighter, less intense orange */
+  color: #ffffff;
+  border-radius: 9999px;
+  /* Slowly return to fully rounded */
+}
+
+/* ─── Hamburger Button (mobile only) ─────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 20;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* X state when open */
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─── Mobile Menu Overlay ─────────────────────────────────── */
+.mobileMenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  z-index: 9;
+  /* Hidden by default */
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.4s ease,
+    padding 0.4s ease;
+  padding: 0 5%;
+}
+
+.mobileMenuOpen {
+  max-height: 400px;
+  padding: 2rem 5%;
+  gap: 1.2rem;
+}
+
+.mobileNavItem {
+  font-family: "Libre Baskerville", serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  cursor: default;
+  user-select: none;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileGetStartedBtn {
+  font-family: "Outfit", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 0.65rem 2rem;
+  border-radius: 0 9999px 9999px 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.mobileGetStartedBtn:hover {
+  background-color: #d35400;
+  color: #ffffff;
+}
+
+.mobileRegisterBtn {
+  font-family: "Outfit", sans-serif;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.65rem 2rem;
+  border-radius: 9999px 0 9999px 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.mobileRegisterBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* ─── Hero Content ───────────────────────────────────────── */
+.heroContent {
+  position: relative;
+  z-index: 2;
+  margin-left: 10%;
+  max-width: 46%;
+}
+
+.heroTitle {
+  font-family: "Libre Baskerville", serif !important;
+  font-size: 3.8rem;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 0.75rem 0;
+  color: #ffffff;
+}
+
+.heroDescription {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1.6rem 0;
+  max-width: 340px;
+  line-height: 1.7;
+}
+
+.getStartedBtn {
+  font-family: "Outfit", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 0.5rem 1.8rem;
+  border-radius: 0 9999px 9999px 9999px;
+  /* Top left sharp */
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.getStartedBtn:hover {
+  background-color: #d35400;
+  /* Dark orange */
+  color: #ffffff;
+}
+
+/* ─── Scroll Indicator ───────────────────────────────────── */
+.scrollIndicator {
+  position: absolute;
+  bottom: 72px;
+  left: 10%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.75;
+}
+
+.scrollText {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 3.5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: #ffffff;
+}
+
+.scrollArrow {
+  width: 1.5px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.45);
+  position: relative;
+}
+
+.scrollArrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.6);
+  transform: rotate(45deg);
+}
+
+/* ─── Auth Section Fixed Reveal ───────────────────────────────────────── */
+/* Placed fixed at the bottom of the viewport, behind everything else.
+   It gets revealed when scrolling through the margin-bottom of stickyOverlapZone. */
+.authSectionFixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(15, 23, 42, 0.38) 0%,
+      rgba(15, 23, 42, 0.55) 100%),
+    url('../../images/AuthBackground.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ─── Responsive: Tablet (≤ 1024px) ─────────────────────── */
+@media (max-width: 1024px) {
+  .navRight {
+    gap: 1.4rem;
+  }
+
+  .navItem {
+    font-size: 0.88rem;
+  }
+
+  .heroContent {
+    margin-left: 8%;
+    max-width: 60%;
+  }
+
+  .heroTitle {
+    font-size: 3.2rem;
+  }
+
+  .scrollIndicator {
+    left: 8%;
+  }
+}
+
+/* ─── Responsive: Mobile (≤ 768px) ──────────────────────── */
+@media (max-width: 768px) {
+
+  /* Hide desktop nav, show hamburger */
+  .navRight {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .heroContent {
+    margin-left: 6%;
+    max-width: 88%;
+  }
+
+  .heroTitle {
+    font-size: 2.6rem;
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .scrollIndicator {
+    left: 6%;
+    bottom: 48px;
+  }
+}
+
+/* ─── Responsive: Small Mobile (≤ 480px) ────────────────── */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .heroContent {
+    margin-left: 5%;
+    max-width: 90%;
+  }
+
+  .heroTitle {
+    font-size: 2.1rem;
+  }
+
+  .heroDescription {
+    font-size: 0.95rem;
+  }
+
+  .getStartedBtn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.4rem;
+  }
+
+  .scrollIndicator {
+    display: none;
+    /* Avoid clutter on very small screens */
+  }
+}

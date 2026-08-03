@@ -1,0 +1,440 @@
+.container {
+  margin-top: 1rem;
+  background: transparent;
+  border-radius: 20px;
+}
+
+.sectionTitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1A1D20;
+  margin-bottom: 0.35rem;
+}
+
+.sectionSubtitle {
+  font-size: 0.95rem;
+  color: #64748B;
+  margin-bottom: 2rem;
+}
+
+.friendsSourceArea {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Allows wrapping instead of horizontal scrolling */
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: rgba(26, 29, 32, 0.02);
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+  min-height: 120px;
+  border: 1px dashed rgba(26, 29, 32, 0.1);
+  scrollbar-width: thin;
+}
+
+.emptyFriends {
+  color: #94A3B8;
+  font-style: italic;
+  font-size: 0.95rem;
+  margin: auto;
+}
+
+.friendBall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: grab;
+  flex-shrink: 0;
+  width: 82px;
+  transition: transform 0.2s;
+  touch-action: none;
+  position: relative;
+}
+
+.removeFriendBtn {
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  background: #FFFFFF;
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+  z-index: 10;
+  /* Hidden by default, shown on parent hover */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.removeFriendBtn:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+/* Show the button when the parent friendBall is hovered */
+.friendBall:hover .removeFriendBtn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.friendBall:active {
+  cursor: grabbing;
+}
+
+.friendBall.dragging {
+  opacity: 0.8;
+  cursor: grabbing;
+}
+
+.friendBall.dragging .avatar {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* ── Reliability ring ────────────────────────────────────────────────── */
+.ringContainer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ringWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* ring is purely visual */
+}
+
+/* Avatar inner — sits centred inside the ring */
+.avatarInner {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  border: 2px solid #FFFFFF;
+  position: relative;
+  z-index: 1;
+}
+
+.avatarInner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarInner span {
+  color: #FFFFFF;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* Score pip — removed; score is now shown as text below the name */
+
+/* Ring arc — animation is handled via inline JS transition */
+.ringArc {
+  /* kept for selector compatibility; animation is inline */
+}
+
+/* Subtle glow pulse on hover */
+.friendBall:hover svg circle:last-child {
+  filter: brightness(1.15);
+}
+
+/* Reliability score label below the friend name */
+.reliabilityLabel {
+  font-size: 0.8rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: #1E293B;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Legacy .avatar — still used by CommitmentPot avatarMini area */
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 2px solid #FFFFFF;
+}
+
+.friendName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1A1D20;
+}
+
+.potsContainer {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+}
+
+.commitmentPot {
+  min-width: 260px;
+  background: rgba(26, 29, 32, 0.02);
+  border: 2px dashed rgba(26, 29, 32, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.potHover {
+  background: rgba(211, 84, 0, 0.04);
+  border-color: #D35400;
+  box-shadow: 0 4px 15px rgba(211, 84, 0, 0.1);
+}
+
+.potFull {
+  border-color: #10B981;
+  border-style: solid;
+  background: rgba(16, 185, 129, 0.02);
+}
+
+.potTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A1D20;
+  margin-bottom: 0.35rem;
+}
+
+.potCapacity {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.assignedArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  min-height: 60px;
+}
+
+.emptySlotText {
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(26, 29, 32, 0.3);
+  padding-top: 1rem;
+}
+
+.assignedFriend {
+  position: relative;
+}
+
+.avatarMini {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.avatarMini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarMini span {
+  color: #FFFFFF;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+}
+
+.removeBtn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #FFFFFF;
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+
+.removeBtn:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+.confirmAction {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirmBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #10B981;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.confirmBtn:hover {
+  background: #059669;
+  
+  box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+}
+
+.bottomInstruction {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(26, 29, 32, 0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(26, 29, 32, 0.1);
+  text-align: center;
+}
+
+.bottomInstruction p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .friendsSourceArea {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .friendBall {
+    width: 76px;
+  }
+
+  .ringContainer {
+    width: 74px;
+    height: 74px;
+  }
+
+  .avatarInner {
+    width: 57px;
+    height: 57px;
+  }
+
+  .potsContainer {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .commitmentPot {
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .friendsSourceArea {
+    padding: 1rem;
+    gap: 0.9rem;
+    min-height: 100px;
+  }
+
+  .friendBall {
+    width: 70px;
+  }
+
+  .ringContainer {
+    width: 66px;
+    height: 66px;
+  }
+
+  .avatarInner {
+    width: 51px;
+    height: 51px;
+  }
+
+  .avatarInner span {
+    font-size: 1.1rem;
+  }
+
+  .friendName {
+    font-size: 0.78rem;
+  }
+
+  .potsContainer {
+    gap: 1rem;
+    /* Enable snapping for smooth swipe */
+    scroll-snap-type: x mandatory;
+  }
+
+  .commitmentPot {
+    min-width: 240px;
+    scroll-snap-align: start;
+  }
+
+  .confirmAction {
+    justify-content: stretch;
+  }
+
+  .confirmBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1.25rem;
+  }
+}

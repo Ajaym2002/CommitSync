@@ -1,0 +1,433 @@
+/* ─── Insights.module.css (Premium Bento Redesign) ───────────────── */
+
+.insightsContainer {
+  min-height: 100vh;
+  font-family: 'Outfit', sans-serif;
+  color: #1A1D20;
+  position: relative;
+  overflow-x: hidden;
+  background: url('../../images/common_bg_image.jpg') center top / cover no-repeat fixed;
+}
+
+.mainContent {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 140px 6% 4rem;
+  z-index: 10;
+}
+
+.header {
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  color: #64748b;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Bento Box Grid */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.bentoItemLarge {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bentoItemMedium {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.bentoItemSmall {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Base Card Style */
+.card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* AI Recommendations Card */
+.aiCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.aiCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #10b981, #8b5cf6);
+  border-radius: 24px 24px 0 0;
+  opacity: 0.8;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.aiIcon {
+  color: #3b82f6;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+.cardTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.personaBadge {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0 1rem;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: fit-content;
+}
+
+.personaLabel {
+  font-size: 0.85rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.personaValue {
+  font-size: 0.95rem;
+  color: #7C3AED;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.statValue {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.insightText {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.recommendationText {
+  background: rgba(255, 255, 255, 0.6);
+  border-left: 4px solid #3b82f6;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 16px 16px 0;
+  font-size: 1.05rem;
+  color: #334155;
+  font-weight: 400;
+  line-height: 1.6;
+  backdrop-filter: blur(8px);
+}
+
+.recommendationText strong {
+  color: #0f172a;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.chartContainer {
+  height: 100%;
+  min-height: 240px;
+  width: 100%;
+  margin-top: 1rem;
+  flex-grow: 1;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: #64748b;
+  gap: 1.5rem;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(59, 130, 246, 0.1);
+  border-radius: 50%;
+  border-top-color: #3b82f6;
+  animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bentoItemLarge {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .bentoItemMedium {
+    grid-column: span 2;
+  }
+  .bentoItemSmall {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+  .bentoItemLarge, .bentoItemMedium, .bentoItemSmall {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+  .statValue {
+    font-size: 2.5rem;
+  }
+}
+
+/* ── BEHAVIORAL DNA PANEL ── */
+.dnaPanelContainer {
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.dnaPanelTitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.8rem;
+  color: #111827;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.dnaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.dnaCard {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.dnaCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.dnaCardHeader h3 {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dnaIcon {
+  color: #3b82f6;
+}
+
+.patternBadge {
+  display: inline-block;
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  text-transform: capitalize;
+}
+
+.dnaText {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.categoryRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.categoryName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+  width: 80px;
+}
+
+.categoryBarBg {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.categoryBarFill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.categoryScore {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  width: 40px;
+  text-align: right;
+}
+
+.limitItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.limitItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.limitItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.limitItem span {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.limitItem strong {
+  font-size: 1.05rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.dnaFooterText {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 2rem 0 0 0;
+}
+
+@media (max-width: 1024px) {
+  .dnaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dnaGrid {
+    grid-template-columns: 1fr;
+  }
+}

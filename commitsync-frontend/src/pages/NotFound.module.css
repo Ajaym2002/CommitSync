@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap");
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../../images/common_bg_image.jpg') center top / 100% auto no-repeat fixed;
+  background-color: #f8fafc;
+  color: #1a1d20;
+  padding: 3rem 1.5rem;
+  position: relative;
+  font-family: 'Outfit', sans-serif;
+}
+
+.logoHeader {
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+  z-index: 10;
+  text-decoration: none;
+}
+
+.contentCard {
+  position: relative;
+  z-index: 5;
+  max-width: 540px;
+  width: 100%;
+  padding: 3.5rem 3rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(26, 29, 32, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.06),
+              0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 99px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #2563eb;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d35400;
+}
+
+.title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #1a1d20;
+  margin: 0 0 0.85rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.titleItalic {
+  font-style: italic;
+  color: #2563eb;
+}
+
+.description {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 2.25rem 0;
+  max-width: 440px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  background: #1d4ed8;
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.65rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1a1d20;
+  background: rgba(26, 29, 32, 0.03);
+  border: 1px solid rgba(26, 29, 32, 0.12);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  background: rgba(26, 29, 32, 0.07);
+  border-color: rgba(26, 29, 32, 0.2);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .logoHeader {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+  .contentCard {
+    padding: 2.5rem 1.75rem;
+  }
+  .title {
+    font-size: 1.75rem;
+  }
+}

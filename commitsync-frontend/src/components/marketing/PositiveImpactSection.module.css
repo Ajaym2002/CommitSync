@@ -1,0 +1,258 @@
+/* ─── Overlapping Section Wrapper ─── */
+.sectionWrapper {
+  position: relative;
+  z-index: 2; /* Above the sticky DifferenceSection (z-index: 1) */
+  width: 100%;
+  background-color: #0c5ce2;
+  border-radius: 32px 32px 32px 32px;
+  padding: 100px 0 140px 0;
+  box-shadow: 0px -12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 140px; /* Space between rows */
+}
+
+/* ─── Alternating Content Rows ─── */
+.contentRow {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered instead of space-between */
+  gap: 60px; /* Reduced gap to bring them closer */
+}
+
+.reversed {
+  flex-direction: row-reverse;
+}
+
+/* ─── Text Column ─── */
+.textCol {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.indicatorWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.indicatorDot {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.indicatorText {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mainHeading {
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+}
+
+.description {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 40px 0;
+}
+
+/* ─── CTA Button ─── */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background-color: #ffffff; /* White background */
+  color: #1d1d1f; /* Black font color */
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaBtn:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btnIconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #1d1d1f; /* Black circle */
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btnIcon {
+  color: #ffffff; /* White icon */
+  font-size: 0.85rem;
+}
+
+/* ─── Image Column ─── */
+.imageCol {
+  flex: 1;
+  max-width: 420px; /* Made thinner */
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.featureImage {
+  width: 100%;
+  /* Use clamp so image scales with viewport — never fixed 600px on small screens */
+  height: clamp(260px, 42vw, 600px);
+  object-fit: cover;
+  border-radius: 8px; /* Almost sharp corners */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease;
+}
+
+.imageCol:hover .featureImage {
+  transform: scale(1.02);
+}
+
+/* ─── Responsive: Tablet (≤ 1024px) ─────────────────────────── */
+@media (max-width: 1024px) {
+  .sectionWrapper {
+    padding: 70px 0 100px 0;
+    border-radius: 24px 24px 24px 24px;
+  }
+
+  .container {
+    gap: 90px;
+  }
+
+  .contentRow,
+  .contentRow.reversed {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .textCol {
+    align-items: center;
+    max-width: 640px;
+  }
+
+  .indicatorWrap {
+    justify-content: center;
+  }
+
+  .mainHeading {
+    font-size: 2.8rem;
+  }
+
+  .description {
+    font-size: 1.05rem;
+  }
+
+  .imageCol {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .featureImage {
+    height: clamp(240px, 45vw, 480px);
+  }
+}
+
+/* ─── Responsive: Mobile (≤ 768px) ──────────────────────────── */
+@media (max-width: 768px) {
+  .sectionWrapper {
+    padding: 60px 0 80px 0;
+    border-radius: 20px 20px 20px 20px;
+  }
+
+  .container {
+    gap: 70px;
+    padding: 0 5%;
+  }
+
+  .mainHeading {
+    font-size: 2.2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin: 0 0 28px 0;
+  }
+
+  .featureImage {
+    height: clamp(220px, 55vw, 380px);
+  }
+
+  .ctaBtn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ─── Responsive: Small Mobile (≤ 480px) ────────────────────── */
+@media (max-width: 480px) {
+  .sectionWrapper {
+    padding: 50px 0 70px 0;
+    border-radius: 16px 16px 16px 16px;
+  }
+
+  .container {
+    gap: 56px;
+    padding: 0 4%;
+  }
+
+  .mainHeading {
+    font-size: 1.85rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .indicatorText {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  .featureImage {
+    height: clamp(200px, 65vw, 340px);
+  }
+
+  .ctaBtn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.2rem;
+  }
+
+  .btnIconCircle {
+    width: 28px;
+    height: 28px;
+  }
+}
