@@ -5,8 +5,7 @@
   width: 100%;
   font-family: "Outfit", sans-serif;
   color: #f8fafc;
-  /* Auth section background - so the 100vh gap below stickyOverlapZone looks right */
-  background-color: #f8fafc;
+  background-color: transparent;
 }
 
 /* The shared scroll container that makes sticky + overlap work.
